@@ -11,7 +11,7 @@ from aiogram.client.bot import DefaultBotProperties
 
 
 # Переменные с ключами API
-TELEGRAM_BOT_TOKEN = '6501028155:AAEnBDnMtV1BsOqSFQVrU3pHK03TaFZ5g2c'
+TELEGRAM_BOT_TOKEN = 'telegram_bot_token'
 API_KEY = "void_key_api"
 
 # Базовая настройка бота
