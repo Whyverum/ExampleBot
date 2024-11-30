@@ -29,7 +29,7 @@ class ListId:
 
 
 # Коды для редактирования текста
-class TextEscape:
+class TextDecorator:
     RESET_ESCAPE = "\033[0m"  # Код для сброса форматирования
     BOLD_ESCAPE = "\033[1m"  # Код для включения жирного текста
     FAINT_ESCAPE = "\033[2m"  # Код для включения тонкого текста (редко поддерживается)
@@ -156,8 +156,8 @@ async def bot_info_out(bot_info):
     bot_can_join_groups = f"Может ли вступать в группы?: {bot_info.can_join_groups}\n"
     bot_can_read_all_group_messages = f"Чтение всех сообщений: {bot_info.can_read_all_group_messages}\n"
 
-    print(f"{TextEscape.BLUE_TEXT} {bot_name} {bot_postname} {bot_username} {bot_id} "
-          f"{bot_language} {bot_can_join_groups} {bot_can_read_all_group_messages} {TextEscape.RESET_ESCAPE}")
+    print(f"{TextDecorator.BLUE_TEXT} {bot_name} {bot_postname} {bot_username} {bot_id} "
+          f"{bot_language} {bot_can_join_groups} {bot_can_read_all_group_messages} {TextDecorator.RESET_ESCAPE}")
 
 
 # Вечная работа бота
