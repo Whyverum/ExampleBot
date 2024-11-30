@@ -11,7 +11,7 @@ from aiogram.client.bot import DefaultBotProperties
 
 
 # Переменные с ключами API
-TELEGRAM_BOT_TOKEN = 'telegram_bot_token'
+TELEGRAM_BOT_TOKEN = '6501028155:AAEnBDnMtV1BsOqSFQVrU3pHK03TaFZ5g2c'
 API_KEY = "void_key_api"
 
 # Базовая настройка бота
@@ -140,9 +140,24 @@ async def all_message(message: types.Message):
 async def main():
     await logger_setup()  # Инициализация логгера
     await set_commands()  # Установка команд
-    bot_info = await bot.get_me()  # Получение информации о боте
+    bot_info = await bot.get_me()   # Получение информации о боте
     logger.bind(custom_variable="AEP", user_var="Console").info(f"Начало запуска бота @{bot_info.username}...")
+    await bot_info_out(bot_info)    # Вывод информации о боте в консоль
     await dp.start_polling(bot)  # Запуск опросника бота
+
+
+# Функция получение информации о боте и выводе ее в консоль
+async def bot_info_out(bot_info):
+    bot_name = f"Основное имя: {bot_info.first_name}\n"
+    bot_postname = f"Доп. имя: {bot_info.last_name}\n"
+    bot_username = f"Юзернейм: @{bot_info.username}\n"
+    bot_id = f"ID: {bot_info.id}\n"
+    bot_language = f"Языковой код: Python-Aiogram\n"
+    bot_can_join_groups = f"Может ли вступать в группы?: {bot_info.can_join_groups}\n"
+    bot_can_read_all_group_messages = f"Чтение всех сообщений: {bot_info.can_read_all_group_messages}\n"
+
+    print(f"{TextEscape.BLUE_TEXT} {bot_name} {bot_postname} {bot_username} {bot_id} "
+          f"{bot_language} {bot_can_join_groups} {bot_can_read_all_group_messages} {TextEscape.RESET_ESCAPE}")
 
 
 # Вечная работа бота
