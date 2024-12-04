@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "botshablon"
+version = "1.0"
+description = "Шаблон для самого простого бота на основе Aiogram"
+authors = ["Whyverum <sergeyzavalin@outlook.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.13"
+aiogram = "^3.15.0"
+loguru = "^0.7.2"
+python-dotenv = "^1.0.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
