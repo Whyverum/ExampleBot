@@ -1,4 +1,7 @@
+# Список всех библиотек и зависимостей проекта
+
 [tool.poetry]
+package-mode = false
 name = "botshablon"
 version = "1.0"
 description = "Шаблон для самого простого бота на основе Aiogram"
