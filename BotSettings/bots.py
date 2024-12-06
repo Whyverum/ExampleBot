@@ -1,25 +1,21 @@
-# bots.py
+# BotSettings/bots.py
+# Создание и настройка бота в одном файле
 
-import os
-from dotenv import load_dotenv
+from datetime import datetime
+from .config import BotEdit, bot_token
 from aiogram import Dispatcher, Bot, types, F
 from aiogram.types import ChatAdministratorRights
-from aiogram.enums import ParseMode, ChatAction
+from aiogram.enums import ParseMode
 from aiogram.client.default import DefaultBotProperties
-from .config import BotEdit
 
-
-# Все то что импортируется при: from bots import *
-__all__ = ("bot", "bot_token", "dp", "F_Media", "prefixes", "BotInfo", "set_all", "bot_get_info")
-
-
-# Загрузка переменных окружения из файла .env
-load_dotenv()
-bot_token = os.getenv("BOT_TOKEN")
+# Настройка экспорта модулей
+__all__ = ("bot", "dp", "F_Media", "prefixes", "BotInfo", "set_all", "bot_get_info")
 
 
 # Базовая настройка и объявление бота
 dp = Dispatcher()
+dp["started_at"] = datetime.now().strftime("\n%Y-%m-%d %H:%M:%S")
+dp["is_active"] = True  # Флаг активности бота
 bot = Bot(token=bot_token, default=DefaultBotProperties(parse_mode=ParseMode.HTML))
 
 F_Media = F.photo | F.document | F.video | F.animation | F.voice | F.video_note  # Фильтр-медиа
