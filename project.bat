@@ -1,4 +1,10 @@
 @echo off
+REM project.bat
+REM Этот файл нужно запускать перед стартом проекта
+REM Он создает локальное окружение, скачивает все зависимости
+REM Чтобы запустить файл используйте: start project или ./project
+
+
 REM Включение кодировки для Windows
 chcp 65001 > nul
 cls
@@ -34,6 +40,31 @@ git --version > nul 2>&1 || (
 echo.
 
 
+REM Проверка наличия Git репозитория
+if not exist .git (
+    echo Создание Git репозитория...
+    git init
+    echo Добавление удалённого репозитория...
+    git remote add origin https://github.com/Whyverum/PrimoPearlBot
+) else (
+    echo Удалённый репозиторий уже настроен.
+)
+echo.
+
+
+REM Создание .env для хранения токенов
+echo Создаётся файл .env...
+(
+    echo main_bot_token=Вставьте_Бот_Токен
+    echo APIKey=Вставьте_Иной_ключ_api
+    echo WebAPIKey=Вставьте_Иной_ключ_webapi
+) > .env
+echo Файл .env - успешно создан!
+echo Пожалуйста, перейдите в файл и вставьте свои ключи.
+echo Вы готовы продолжить? Нажмите любую клавишу!
+pause
+
+
 REM Создание виртуального окружения, если его еще нет
 if not exist .venv (
     echo Создание виртуального окружения...
@@ -63,21 +94,7 @@ poetry install
 echo.
 
 
-REM Создание Git репозитория
-echo Проверка наличия Git репозитория...
-if not exist .git (
-    echo Создание Git репозитория...
-    git init
-    echo Репозиторий создан.
-)
-echo.
-
-
 REM Очистка консоли перед запуском main.py
 cls
 echo Запуск main.py...
-echo.
 python main.py
-
-
-pause
