@@ -1,9 +1,10 @@
 # main.py
+# Основной код проекта, который и соединяет в себе все его возможности
 
 import asyncio
 from aiogram import types
 from aiogram.filters import Command
-from settings import *
+from BotSettings import *
 
 
 # Обработчик команды /start
@@ -39,23 +40,22 @@ async def all_message(message: types.Message):
          .info(f"Получено сообщение: {message.text}"))
         # Тут весь иной код для всех полученных сообщений
     else:
-        types_messages = await types_message(message)
-        (logger.bind(custom_variable=type_message, user_var=f"@{message.from_user.username}")
-         .info(f"Получено сообщение: {types_messages}"))
+        type_msg = types_message(message)
+        (logger.bind(custom_variable=type_msg, user_var=f"@{message.from_user.username}")
+         .info(f"Получено сообщение: {type_msg}"))
 
 
-# Запуск бота
+# Запуск основного кода
 async def main():
-    await setup_logger()  # Инициализация логгера
+    setup_logger()  # Инициализация логгера
     await set_all()  # Установка первоначальной настройки
-    await bot.delete_webhook()  # Удаление webhook бота
     await bot_get_info()    # Получение информации о боте
 
     # Вывод в консоль сообщения о старте бота
     (logger.bind(custom_variable="AEP", user_var="Console")
-     .info(f"Начало запуска бота @{BotInfo.username}..."))
+    .info(f"Начало запуска бота @{BotInfo.username}..."))
 
-    await bot_info_out()  # Вывод в консоль информацию о боте
+    start_info_out()  # Вывод в консоль информацию о боте
     await dp.start_polling(bot)  # Запуск опросника бота
 
 

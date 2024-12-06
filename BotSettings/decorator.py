@@ -1,6 +1,7 @@
-# decorator.py
+# BotSettings/decorator.py
+# Небольшая библиотека для декорирования текста в консоли
 
-# Все то что импортируется при: from decorator import *
+# Настройка экспорта модулей
 __all__ = ("TextDecorator", )
 
 
